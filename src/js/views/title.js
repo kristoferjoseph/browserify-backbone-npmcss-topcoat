@@ -1,4 +1,4 @@
-var shim     = require('./../shim')
+var shim     = require('shimsham')
 ,   Backbone = shim.Backbone
 ,   $        = shim.$
 ,   _        = shim._
@@ -15,7 +15,7 @@ module.exports = Backbone.View.extend({
     template:template,
 
     render: function() {
-        return this.template({title:'Ya Jazz Archive'})
+        return this.template({title:'Jazz Archive'})
     }
 })
 

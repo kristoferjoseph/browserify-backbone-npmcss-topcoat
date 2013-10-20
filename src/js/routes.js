@@ -1,9 +1,8 @@
-var shim     = require('./shim')
+var shim     = require('shimsham')
 ,   $        = shim.$
 ,   _        = shim._
 ,   Backbone = shim.Backbone
 ,   App      = require('./views/app')
-
 
 module.exports = Backbone.Router.extend({
 

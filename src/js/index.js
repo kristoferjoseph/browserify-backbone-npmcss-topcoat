@@ -1,4 +1,4 @@
-var shim       = require('./shim')
+var shim       = require('shimsham')
 ,   $          = shim.$
 ,   Backbone   = shim.Backbone
 ,   Router     = require('./routes')

@@ -7641,6 +7641,156 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 }.call(this));
 
 },{}],4:[function(require,module,exports){
+/**
+ * RATIONAL
+ *
+ * This file isolates the clientside madness so you can just require
+ * an underscore (character), dollarsign, or Backbone without actually
+ * worrying about the underlying abstraction gynastics. Order is not
+ * significant. 
+ *`
+ * USAGE
+ *
+ * var shim     = require('./shim')
+ * ,   Backbone = shim.Backbone
+ * ,   $        = shim.$
+ * ,   _        = shim._
+ * 
+ */
+
+// these could be swapped with whatever
+var $        = require('zepto-browserify').$
+,   _        = require('lodash/dist/lodash.underscore')
+,   Backbone = require('backbone')
+
+// explicitly set to avoid load issues
+Backbone.$ = $
+
+// share the love
+module.exports = { Backbone:Backbone
+                 ,        $:$
+                 ,        _:_
+                 }
+},{"backbone":1,"lodash/dist/lodash.underscore":3,"zepto-browserify":11}],5:[function(require,module,exports){
+var shim       = require('shimsham')
+,   $          = shim.$
+,   Backbone   = shim.Backbone
+,   Router     = require('./routes')
+
+$(function() {
+    new Router
+    Backbone.history.start({pushState:true})
+})
+
+
+},{"./routes":6,"shimsham":4}],6:[function(require,module,exports){
+var shim     = require('shimsham')
+,   $        = shim.$
+,   _        = shim._
+,   Backbone = shim.Backbone
+,   App      = require('./views/app')
+
+module.exports = Backbone.Router.extend({
+
+    routes: {
+        '/':'home',
+        "home":"home",      // #help
+        "audio/:id":"audio" // #audio/1
+    },
+
+    initialize: function() {
+        new App 
+    },
+
+    home: function() {
+    },
+
+    audio: function(id) {
+
+    }
+})
+
+},{"./views/app":8,"shimsham":4}],7:[function(require,module,exports){
+module.exports=(function() {var t = function anonymous(locals, filters, escape) {
+escape = escape || function (html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+};
+var buf = [];
+with (locals || {}) { (function(){ 
+ buf.push('<div class=simple>', escape((1,  text )), '</div>\n'); })();
+} 
+return buf.join('');
+}; return function(l) { return t(l) }}())
+},{}],8:[function(require,module,exports){
+var shim     = require('shimsham')
+,   Backbone = shim.Backbone
+,   $        = shim.$
+,   _        = shim._
+,   app      = require('./app.ejs.html')
+,   TitleBar = require('./title')
+
+
+module.exports = Backbone.View.extend({
+    
+    el: 'body',
+
+    initialize: function() {
+        this.title = new TitleBar
+        this.render()
+    },
+
+    template:app,
+
+    render: function() {
+        $(this.el).html(this.template({text:'sweet'}))
+        $(this.el).append(this.title.render())
+    }
+})
+
+
+},{"./app.ejs.html":7,"./title":10,"shimsham":4}],9:[function(require,module,exports){
+module.exports=(function() {var t = function anonymous(locals, filters, escape) {
+escape = escape || function (html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+};
+var buf = [];
+with (locals || {}) { (function(){ 
+ buf.push('<div id=title class=topcoat-navigation-bar>\n    <div class="topcoat-navigation-bar__item center full">\n        <h1 class=topcoat-navigation-bar__title>', escape((3,  title )), '</h1>\n    </div>\n</div>\n'); })();
+} 
+return buf.join('');
+}; return function(l) { return t(l) }}())
+},{}],10:[function(require,module,exports){
+var shim     = require('shimsham')
+,   Backbone = shim.Backbone
+,   $        = shim.$
+,   _        = shim._
+,   template = require('./title.ejs.html')
+
+module.exports = Backbone.View.extend({
+    
+    el: '#title',
+
+    initialize: function() {
+        this.render()
+    },
+
+    template:template,
+
+    render: function() {
+        return this.template({title:'Jazz Archive'})
+    }
+})
+
+
+},{"./title.ejs.html":9,"shimsham":4}],11:[function(require,module,exports){
 /* Zepto v1.0 - polyfill zepto detect event ajax form fx - zeptojs.com/license */
 
 ;(function(undefined){
@@ -9232,157 +9382,5 @@ module.exports.Zepto = Zepto;
   testEl = null
 })(Zepto)
 
-},{}],5:[function(require,module,exports){
-var shim       = require('./shim')
-,   $          = shim.$
-,   Backbone   = shim.Backbone
-,   Router     = require('./routes')
-
-$(function() {
-    new Router
-    Backbone.history.start({pushState:true})
-})
-
-
-},{"./routes":6,"./shim":7}],6:[function(require,module,exports){
-var shim     = require('./shim')
-,   $        = shim.$
-,   _        = shim._
-,   Backbone = shim.Backbone
-,   App      = require('./views/app')
-
-
-module.exports = Backbone.Router.extend({
-
-    routes: {
-        '/':'home',
-        "home":"home",      // #help
-        "audio/:id":"audio" // #audio/1
-    },
-
-    initialize: function() {
-        new App 
-    },
-
-    home: function() {
-    },
-
-    audio: function(id) {
-
-    }
-})
-
-},{"./shim":7,"./views/app":9}],7:[function(require,module,exports){
-/**
- * RATIONAL
- *
- * This file isolates the clientside madness so you can just require
- * an underscore (character), dollarsign, or Backbone without actually
- * worrying about the underlying abstraction gynastics. Order is not
- * significant. 
- *`
- * USAGE
- *
- * var shim     = require('./shim')
- * ,   Backbone = shim.Backbone
- * ,   $        = shim.$
- * ,   _        = shim._
- * 
- */
-
-// these could be swapped with whatever
-var $        = require('zepto-browserify').$
-,   _        = require('lodash/dist/lodash.underscore')
-,   Backbone = require('backbone')
-
-// explicitly set to avoid load issues
-Backbone.$ = $
-
-// share the love
-module.exports = { Backbone:Backbone
-                 ,        $:$
-                 ,        _:_
-                 }
-
-},{"backbone":1,"lodash/dist/lodash.underscore":3,"zepto-browserify":4}],8:[function(require,module,exports){
-module.exports=(function() {var t = function anonymous(locals, filters, escape) {
-escape = escape || function (html){
-  return String(html)
-    .replace(/&(?!\w+;)/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-};
-var buf = [];
-with (locals || {}) { (function(){ 
- buf.push('<div class=simple>', escape((1,  text )), '</div>\n'); })();
-} 
-return buf.join('');
-}; return function(l) { return t(l) }}())
-},{}],9:[function(require,module,exports){
-var shim     = require('./../shim')
-,   Backbone = shim.Backbone
-,   $        = shim.$
-,   _        = shim._
-,   app      = require('./app.ejs.html')
-,   TitleBar = require('./title')
-
-
-module.exports = Backbone.View.extend({
-    
-    el: 'body',
-
-    initialize: function() {
-        this.title = new TitleBar
-        this.render()
-    },
-
-    template:app,
-
-    render: function() {
-        $(this.el).html(this.template({text:'sweet'}))
-        $(this.el).append(this.title.render())
-    }
-})
-
-
-},{"./../shim":7,"./app.ejs.html":8,"./title":11}],10:[function(require,module,exports){
-module.exports=(function() {var t = function anonymous(locals, filters, escape) {
-escape = escape || function (html){
-  return String(html)
-    .replace(/&(?!\w+;)/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-};
-var buf = [];
-with (locals || {}) { (function(){ 
- buf.push('<div id=title class=topcoat-navigation-bar>\n    <div class="topcoat-navigation-bar__item center full">\n        <h1 class=topcoat-navigation-bar__title>', escape((3,  title )), '</h1>\n    </div>\n</div>\n'); })();
-} 
-return buf.join('');
-}; return function(l) { return t(l) }}())
-},{}],11:[function(require,module,exports){
-var shim     = require('./../shim')
-,   Backbone = shim.Backbone
-,   $        = shim.$
-,   _        = shim._
-,   template = require('./title.ejs.html')
-
-module.exports = Backbone.View.extend({
-    
-    el: '#title',
-
-    initialize: function() {
-        this.render()
-    },
-
-    template:template,
-
-    render: function() {
-        return this.template({title:'Ya Jazz Archive'})
-    }
-})
-
-
-},{"./../shim":7,"./title.ejs.html":10}]},{},[5])
+},{}]},{},[5])
 ;

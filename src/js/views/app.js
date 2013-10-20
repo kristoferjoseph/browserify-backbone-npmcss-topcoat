@@ -1,4 +1,4 @@
-var shim     = require('./../shim')
+var shim     = require('shimsham')
 ,   Backbone = shim.Backbone
 ,   $        = shim.$
 ,   _        = shim._
