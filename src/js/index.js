@@ -1,8 +1,10 @@
-var $ = require('./shim').$
-,   SimpleView = require('./views/simple')
+var shim       = require('./shim')
+,   $          = shim.$
+,   Backbone   = shim.Backbone
+,   Router     = require('./routes')
 
 $(function() {
-    console.log('Begin here.')
-    new SimpleView
+    new Router
+    Backbone.history.start({pushState:true})
 })
 

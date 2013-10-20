@@ -9233,16 +9233,46 @@ module.exports.Zepto = Zepto;
 })(Zepto)
 
 },{}],5:[function(require,module,exports){
-var $ = require('./shim').$
-,   SimpleView = require('./views/simple')
+var shim       = require('./shim')
+,   $          = shim.$
+,   Backbone   = shim.Backbone
+,   Router     = require('./routes')
 
 $(function() {
-    console.log('Begin here.')
-    new SimpleView
+    new Router
+    Backbone.history.start({pushState:true})
 })
 
 
-},{"./shim":6,"./views/simple":8}],6:[function(require,module,exports){
+},{"./routes":6,"./shim":7}],6:[function(require,module,exports){
+var shim     = require('./shim')
+,   $        = shim.$
+,   _        = shim._
+,   Backbone = shim.Backbone
+,   App      = require('./views/app')
+
+
+module.exports = Backbone.Router.extend({
+
+    routes: {
+        '/':'home',
+        "home":"home",      // #help
+        "audio/:id":"audio" // #audio/1
+    },
+
+    initialize: function() {
+        new App 
+    },
+
+    home: function() {
+    },
+
+    audio: function(id) {
+
+    }
+})
+
+},{"./shim":7,"./views/app":9}],7:[function(require,module,exports){
 /**
  * RATIONAL
  *
@@ -9274,7 +9304,7 @@ module.exports = { Backbone:Backbone
                  ,        _:_
                  }
 
-},{"backbone":1,"lodash/dist/lodash.underscore":3,"zepto-browserify":4}],7:[function(require,module,exports){
+},{"backbone":1,"lodash/dist/lodash.underscore":3,"zepto-browserify":4}],8:[function(require,module,exports){
 module.exports=(function() {var t = function anonymous(locals, filters, escape) {
 escape = escape || function (html){
   return String(html)
@@ -9289,28 +9319,70 @@ with (locals || {}) { (function(){
 } 
 return buf.join('');
 }; return function(l) { return t(l) }}())
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var shim     = require('./../shim')
 ,   Backbone = shim.Backbone
 ,   $        = shim.$
 ,   _        = shim._
-,   simple   = require('./simple.ejs.html')
+,   app      = require('./app.ejs.html')
+,   TitleBar = require('./title')
+
 
 module.exports = Backbone.View.extend({
     
     el: 'body',
 
     initialize: function() {
+        this.title = new TitleBar
         this.render()
     },
 
-    template:simple,
+    template:app,
 
     render: function() {
-        $(this.el).html(this.template({text:'fuck ya'}))
+        $(this.el).html(this.template({text:'sweet'}))
+        $(this.el).append(this.title.render())
     }
 })
 
 
-},{"./../shim":6,"./simple.ejs.html":7}]},{},[5])
+},{"./../shim":7,"./app.ejs.html":8,"./title":11}],10:[function(require,module,exports){
+module.exports=(function() {var t = function anonymous(locals, filters, escape) {
+escape = escape || function (html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+};
+var buf = [];
+with (locals || {}) { (function(){ 
+ buf.push('<div id=title class=topcoat-navigation-bar>\n    <div class="topcoat-navigation-bar__item center full">\n        <h1 class=topcoat-navigation-bar__title>', escape((3,  title )), '</h1>\n    </div>\n</div>\n'); })();
+} 
+return buf.join('');
+}; return function(l) { return t(l) }}())
+},{}],11:[function(require,module,exports){
+var shim     = require('./../shim')
+,   Backbone = shim.Backbone
+,   $        = shim.$
+,   _        = shim._
+,   template = require('./title.ejs.html')
+
+module.exports = Backbone.View.extend({
+    
+    el: '#title',
+
+    initialize: function() {
+        this.render()
+    },
+
+    template:template,
+
+    render: function() {
+        return this.template({title:'Ya Jazz Archive'})
+    }
+})
+
+
+},{"./../shim":7,"./title.ejs.html":10}]},{},[5])
 ;

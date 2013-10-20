@@ -2,20 +2,24 @@ var shim     = require('./../shim')
 ,   Backbone = shim.Backbone
 ,   $        = shim.$
 ,   _        = shim._
-,   simple   = require('./simple.ejs.html')
+,   app      = require('./app.ejs.html')
+,   TitleBar = require('./title')
+
 
 module.exports = Backbone.View.extend({
     
     el: 'body',
 
     initialize: function() {
+        this.title = new TitleBar
         this.render()
     },
 
-    template:simple,
+    template:app,
 
     render: function() {
-        $(this.el).html(this.template({text:'fuck ya'}))
+        $(this.el).html(this.template({text:'sweet'}))
+        $(this.el).append(this.title.render())
     }
 })
 
