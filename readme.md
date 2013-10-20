@@ -1,6 +1,13 @@
-# Browserify, Grunt, Zepto, Lowdash, Backbone, Topcoat
+# Backbone and Topcoat
 
+- Zepto
+- Lowdash
+- Backbone
+- Topcoat
 
-browserify-shim-for-zepto-lowdash-backbone
+## Build Chain
 
-basic-browserify-backbone-lowdash-zepto-thing
+- grunt
+- browserify
+- npmcss
+
