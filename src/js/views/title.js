@@ -6,8 +6,6 @@ var shim     = require('shimsham')
 
 module.exports = Backbone.View.extend({
     
-    el: '#title',
-
     initialize: function() {
         this.render()
     },
@@ -15,7 +13,8 @@ module.exports = Backbone.View.extend({
     template:template,
 
     render: function() {
-        return this.template({title:'Jazz Archive'})
+        this.$el.html(template({title:'Jazz Mix'}))
+        return this
     }
 })
 

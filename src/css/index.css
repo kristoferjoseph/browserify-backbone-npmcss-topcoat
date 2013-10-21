@@ -1,8 +1,6 @@
 @import 'topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark';
 @import 'topcoat-list/css/topcoat-list-mobile-dark';
 @import 'topcoat-button/css/topcoat-button-mobile-dark';
+@import './layout.css';
+@import './topcoat-overrides.css';
 
-
-.red {
-    color:red;
-}

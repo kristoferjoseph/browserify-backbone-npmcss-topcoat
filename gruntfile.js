@@ -62,16 +62,17 @@ module.exports = function (grunt) {
     // The End. Of Config.
     })
   
-  
+    // 3rd party infra
     grunt.loadNpmTasks('grunt-browserify')
     grunt.loadNpmTasks('grunt-contrib-uglify')
     grunt.loadNpmTasks('grunt-contrib-cssmin')
     grunt.loadNpmTasks('grunt-contrib-watch')
-    
+   
+    // main entry points 
     grunt.registerTask('default', ['ejs:index', 'browserify', 'npmcss'])
-
     grunt.registerTask('release', ['default', 'uglify:min', 'cssmin'])
 
+    // FIXME these tasks should become modules in their own right
     grunt.registerTask('npmcss', [], function() {
         var css = npmcss(path.join(__dirname, 'src', 'css', 'index.css'))
         require('fs').writeFileSync(path.join(__dirname, 'public', 'index.css'), css)

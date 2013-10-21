@@ -4,6 +4,7 @@ var shim     = require('shimsham')
 ,   Backbone = shim.Backbone
 ,   App      = require('./views/app')
 
+
 module.exports = Backbone.Router.extend({
 
     routes: {
@@ -13,7 +14,7 @@ module.exports = Backbone.Router.extend({
     },
 
     initialize: function() {
-        new App 
+        new App
     },
 
     home: function() {

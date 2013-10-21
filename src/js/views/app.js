@@ -2,24 +2,29 @@ var shim     = require('shimsham')
 ,   Backbone = shim.Backbone
 ,   $        = shim.$
 ,   _        = shim._
-,   app      = require('./app.ejs.html')
+,   template = require('./app.ejs.html')
 ,   TitleBar = require('./title')
-
+,   NavMenu  = require('./nav')
+,   Controls = require('./controls')
+,   playlist = require('./../models/playlist')
+,   player   = require('./../models/player')
 
 module.exports = Backbone.View.extend({
     
     el: 'body',
+    
+    template:template,
 
     initialize: function() {
-        this.title = new TitleBar
+        $(this.el).html(this.template())
         this.render()
     },
 
-    template:app,
-
     render: function() {
-        $(this.el).html(this.template({text:'sweet'}))
-        $(this.el).append(this.title.render())
+        this.title    = new TitleBar({el:'#title'})
+        this.nav      = new NavMenu({el:'#navmenu', model:player, collection:playlist})
+        this.controls = new Controls({el:'#controls', model:player, collection:playlist})
+        return this
     }
 })
 

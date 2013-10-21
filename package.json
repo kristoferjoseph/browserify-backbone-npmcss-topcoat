@@ -25,6 +25,7 @@
     "topcoat-theme": "~0.6.4",
     "shimsham": "~0.1.0",
     "backbone": "~1.1.0",
-    "lodash": "~2.2.1"
+    "lodash": "~2.2.1",
+    "npm-css": "~0.2.3"
   }
 }

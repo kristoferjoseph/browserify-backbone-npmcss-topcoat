@@ -1,2 +1,10 @@
-Home
-About
+<nav class=topcoat-list>
+    <ul class=topcoat-list__container>
+    <% collection.forEach(function(track) { %>
+    <li id=<%= track.get('mp3') %> class=topcoat-list__item>
+        <span class=mixtape-title><%= track.get('title') %></span><br>
+        <span class=mixtape-artist><%= track.get('artist') %></span>
+    </li>
+    <% }); %>
+    </ul>
+</nav>

@@ -1,36 +1,36 @@
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .quarter {
+.topcoat-navigation-bar .quarter {
   width: 25%;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .half {
+.topcoat-navigation-bar .half {
   width: 50%;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .three-quarters {
+.topcoat-navigation-bar .three-quarters {
   width: 75%;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .third {
+.topcoat-navigation-bar .third {
   width: 33.333%;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .two-thirds {
+.topcoat-navigation-bar .two-thirds {
   width: 66.666%;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .full {
+.topcoat-navigation-bar .full {
   width: 100%;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .left {
+.topcoat-navigation-bar .left {
   text-align: left;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .center {
+.topcoat-navigation-bar .center {
   text-align: center;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .right {
+.topcoat-navigation-bar .right {
   text-align: right;
 }
 
@@ -52,7 +52,7 @@
 *
 */
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .navigation-bar,.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark 
+.topcoat-navigation-bar .navigation-bar,.topcoat-navigation-bar 
 .topcoat-navigation-bar {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -75,7 +75,7 @@
   user-select: none;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .navigation-bar__item,.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark 
+.topcoat-navigation-bar .navigation-bar__item,.topcoat-navigation-bar 
 .topcoat-navigation-bar__item {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -93,7 +93,7 @@
   border: none;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .navigation-bar__title,.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark 
+.topcoat-navigation-bar .navigation-bar__title,.topcoat-navigation-bar 
 .topcoat-navigation-bar__title {
   padding: 0;
   margin: 0;
@@ -123,7 +123,7 @@
     - bar
 */
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .topcoat-navigation-bar {
+.topcoat-navigation-bar {
   height: 4.375rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -133,13 +133,13 @@
   box-shadow: inset 0 -1px #333434, 0 1px #454646;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .topcoat-navigation-bar__item {
+.topcoat-navigation-bar .topcoat-navigation-bar__item {
   margin: 0;
   line-height: 4.375rem;
   vertical-align: top;
 }
 
-.topcoat-navigation-bar/css/topcoat-navigation-bar-mobile-dark .topcoat-navigation-bar__title {
+.topcoat-navigation-bar .topcoat-navigation-bar__title {
   font-size: 1.3rem;
   font-weight: 400;
   color: #fff;
@@ -161,7 +161,7 @@
 * limitations under the License.
 *
 */
-.topcoat-list/css/topcoat-list-mobile-dark .list,.topcoat-list/css/topcoat-list-mobile-dark 
+.topcoat-list .list,.topcoat-list 
 .topcoat-list {
   padding: 0;
   margin: 0;
@@ -177,17 +177,17 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
-.topcoat-list/css/topcoat-list-mobile-dark .list__header,.topcoat-list/css/topcoat-list-mobile-dark 
+.topcoat-list .list__header,.topcoat-list 
 .topcoat-list__header {
   margin: 0;
 }
-.topcoat-list/css/topcoat-list-mobile-dark .list__container,.topcoat-list/css/topcoat-list-mobile-dark 
+.topcoat-list .list__container,.topcoat-list 
 .topcoat-list__container {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
-.topcoat-list/css/topcoat-list-mobile-dark .list__item,.topcoat-list/css/topcoat-list-mobile-dark 
+.topcoat-list .list__item,.topcoat-list 
 .topcoat-list__item {
   margin: 0;
   padding: 0;
@@ -214,12 +214,12 @@
     - mobile
     - list
 */
-.topcoat-list/css/topcoat-list-mobile-dark .topcoat-list {
+.topcoat-list {
   border-top: 1px solid #2f3234;
   border-bottom: 1px solid #5e6061;
   background-color: #444849;
 }
-.topcoat-list/css/topcoat-list-mobile-dark .topcoat-list__header {
+.topcoat-list .topcoat-list__header {
   padding: 4px 20px;
   font-size: 0.9em;
   font-weight: 400;
@@ -229,16 +229,16 @@
   border-top: solid 1px rgba(255,255,255,0.1);
   border-bottom: solid 1px rgba(255,255,255,0.05);
 }
-.topcoat-list/css/topcoat-list-mobile-dark .topcoat-list__container {
+.topcoat-list .topcoat-list__container {
   border-top: 1px solid #2f3234;
   color: #c6c8c8;
 }
-.topcoat-list/css/topcoat-list-mobile-dark .topcoat-list__item {
+.topcoat-list .topcoat-list__item {
   padding: 1.25rem;
   border-top: 1px solid #5e6061;
   border-bottom: 1px solid #2f3234;
 }
-.topcoat-list/css/topcoat-list-mobile-dark .topcoat-list__item:first-child {
+.topcoat-list .topcoat-list__item:first-child {
   border-top: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -260,12 +260,12 @@
 *
 */
 
-.topcoat-button/css/topcoat-button-mobile-dark .button,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--quiet,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large--quiet,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--cta,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .button,.topcoat-button 
+.topcoat-button,.topcoat-button 
+.topcoat-button--quiet,.topcoat-button 
+.topcoat-button--large,.topcoat-button 
+.topcoat-button--large--quiet,.topcoat-button 
+.topcoat-button--cta,.topcoat-button 
 .topcoat-button--large--cta {
   position: relative;
   display: inline-block;
@@ -292,19 +292,19 @@
   text-decoration: none;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .button--quiet {
+.topcoat-button .button--quiet {
   background: transparent;
   border: 1px solid transparent;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .button--disabled,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button:disabled,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--quiet:disabled,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large:disabled,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large--quiet:disabled,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--cta:disabled,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .button--disabled,.topcoat-button 
+.topcoat-button:disabled,.topcoat-button 
+.topcoat-button--quiet:disabled,.topcoat-button 
+.topcoat-button--large:disabled,.topcoat-button 
+.topcoat-button--large--quiet:disabled,.topcoat-button 
+.topcoat-button--cta:disabled,.topcoat-button 
 .topcoat-button--large--cta:disabled {
   opacity: 0.3;
   cursor: default;
@@ -331,11 +331,11 @@
     - button
 */
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--quiet,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large--quiet,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--cta,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button,.topcoat-button 
+.topcoat-button--quiet,.topcoat-button 
+.topcoat-button--large,.topcoat-button 
+.topcoat-button--large--quiet,.topcoat-button 
+.topcoat-button--cta,.topcoat-button 
 .topcoat-button--large--cta {
   padding: 0 1.25rem;
   font-size: 16px;
@@ -351,20 +351,20 @@
   border-radius: 6px;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button:hover,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--quiet:hover,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large:hover,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button:hover,.topcoat-button 
+.topcoat-button--quiet:hover,.topcoat-button 
+.topcoat-button--large:hover,.topcoat-button 
 .topcoat-button--large--quiet:hover {
   background-color: #626465;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button:focus,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--quiet:focus,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--quiet:hover:focus,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large:focus,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large--quiet:focus,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large--quiet:hover:focus,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--cta:focus,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button:focus,.topcoat-button 
+.topcoat-button--quiet:focus,.topcoat-button 
+.topcoat-button--quiet:hover:focus,.topcoat-button 
+.topcoat-button--large:focus,.topcoat-button 
+.topcoat-button--large--quiet:focus,.topcoat-button 
+.topcoat-button--large--quiet:hover:focus,.topcoat-button 
+.topcoat-button--cta:focus,.topcoat-button 
 .topcoat-button--large--cta:focus {
   border: 1px solid #0036ff;
   -webkit-box-shadow: inset 0 1px rgba(255,255,255,0.36), 0 0 0 2px #6fb5f1;
@@ -372,7 +372,7 @@
   outline: 0;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button:active,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button:active,.topcoat-button 
 .topcoat-button--large:active {
   border: 1px solid #333434;
   background-color: #3f4041;
@@ -399,14 +399,14 @@
     - quiet
 */
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--quiet {
+.topcoat-button .topcoat-button--quiet {
   background: transparent;
   border: 1px solid transparent;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--quiet:hover,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .topcoat-button--quiet:hover,.topcoat-button 
 .topcoat-button--large--quiet:hover {
   text-shadow: 0 -1px rgba(0,0,0,0.69);
   border: 1px solid #333434;
@@ -414,9 +414,9 @@
   box-shadow: inset 0 1px #737373;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--quiet:active,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--quiet:focus:active,.topcoat-button/css/topcoat-button-mobile-dark 
-.topcoat-button--large--quiet:active,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .topcoat-button--quiet:active,.topcoat-button 
+.topcoat-button--quiet:focus:active,.topcoat-button 
+.topcoat-button--large--quiet:active,.topcoat-button 
 .topcoat-button--large--quiet:focus:active {
   color: #c6c8c8;
   text-shadow: 0 -1px rgba(0,0,0,0.69);
@@ -445,7 +445,7 @@
     - large
 */
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--large,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .topcoat-button--large,.topcoat-button 
 .topcoat-button--large--quiet {
   font-size: 1.3rem;
   font-weight: 400;
@@ -473,7 +473,7 @@
     - quiet
 */
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--large--quiet {
+.topcoat-button .topcoat-button--large--quiet {
   background: transparent;
   border: 1px solid transparent;
   -webkit-box-shadow: none;
@@ -499,7 +499,7 @@
     - call to action
 */
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--cta,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .topcoat-button--cta,.topcoat-button 
 .topcoat-button--large--cta {
   border: 1px solid #134f7f;
   background-color: #288edf;
@@ -510,12 +510,12 @@
   text-shadow: 0 -1px rgba(0,0,0,0.36);
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--cta:hover,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .topcoat-button--cta:hover,.topcoat-button 
 .topcoat-button--large--cta:hover {
   background-color: #4ca1e4;
 }
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--cta:active,.topcoat-button/css/topcoat-button-mobile-dark 
+.topcoat-button .topcoat-button--cta:active,.topcoat-button 
 .topcoat-button--large--cta:active {
   background-color: #1e7dc8;
   -webkit-box-shadow: inset 0 1px rgba(0,0,0,0.12);
@@ -542,14 +542,22 @@
     - call to action
 */
 
-.topcoat-button/css/topcoat-button-mobile-dark .topcoat-button--large--cta {
+.topcoat-button .topcoat-button--large--cta {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 4.375rem;
   padding: 0 1.25rem;
 }
 
-
-.red {
-    color:red;
+body {
+    margin:0;
+    padding:0;
+    background:#4A4D4E;
 }
+
+.topcoat-button {
+    width:97%;
+    margin:0.41rem;
+}
+
+
