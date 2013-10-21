@@ -7687,11 +7687,13 @@ $(function() {
 var shim     = require('shimsham')
 ,   Backbone = shim.Backbone
 ,   _        = shim._
+,   playlist = require('./playlist')
 
 var Player = Backbone.Model.extend({
     
     initialize: function() {
-        this.set('playing', false)
+        // this.set('playing', false)
+        // this.set('currentTrackId', )    
     },
 
     play: function(id) {
@@ -7708,9 +7710,9 @@ var Player = Backbone.Model.extend({
 
 _.extend(Player, Backbone.Events)
 
-module.exports = new Player
+module.exports = new Player({playing:false, currentTrackId:playlist.at(0).get('mp3')})
 
-},{"shimsham":4}],7:[function(require,module,exports){
+},{"./playlist":7,"shimsham":4}],7:[function(require,module,exports){
 var Backbone = require('shimsham').Backbone
 ,   Track    = require('./track')
 ,   Playlist = Backbone.Collection.extend({model:Track})
@@ -7846,19 +7848,16 @@ var shim     = require('shimsham')
 
 module.exports = Backbone.View.extend({
     
+    
     events: {
         'click': 'buttonClicked'
     },
 
     initialize: function() {
-        
-        this.button = $('#controls button')     
-        this.audio  = $('#controls audio') 
-        
+        // draw yourself
         this.render()
         
-        var self = this
-        ,  player = this.model
+        var self = this, player = this.model
         
         player.on('play', function() {
             console.log('current track: ' + player.get('currentTrackId'))
@@ -7870,7 +7869,7 @@ module.exports = Backbone.View.extend({
             self.pause()
         })
 
-        this.audio.on('timeupdate', function(e) {
+        $('#controls audio').on('timeupdate', function(e) {
             $('#seekbar').attr("value", this.currentTime / this.duration);
         })
     },
@@ -7883,14 +7882,18 @@ module.exports = Backbone.View.extend({
     },
 
     play: function() {
-        this.button.html('Pause')      
-        this.audio.attr('src', this.model.get('currentTrackId')) 
-        this.audio.attr('autoplay', true) 
+        var button = $('#controls button')    
+        ,   audio  = $('#controls audio')
+        button.html('Pause')      
+        audio.attr('src', this.model.get('currentTrackId')) 
+        audio.attr('autoplay', true) 
     },
 
     pause: function() {
-        this.button.html('Play')      
-        this.audio[0].pause() 
+        var button = $('#controls button')    
+        ,   audio  = $('#controls audio')
+        button.html('Play')      
+        audio[0].pause() 
     },
 
     buttonClicked: function() {

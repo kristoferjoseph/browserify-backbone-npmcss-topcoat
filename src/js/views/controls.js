@@ -6,19 +6,16 @@ var shim     = require('shimsham')
 
 module.exports = Backbone.View.extend({
     
+    
     events: {
         'click': 'buttonClicked'
     },
 
     initialize: function() {
-        
-        this.button = $('#controls button')     
-        this.audio  = $('#controls audio') 
-        
+        // draw yourself
         this.render()
         
-        var self = this
-        ,  player = this.model
+        var self = this, player = this.model
         
         player.on('play', function() {
             console.log('current track: ' + player.get('currentTrackId'))
@@ -30,7 +27,7 @@ module.exports = Backbone.View.extend({
             self.pause()
         })
 
-        this.audio.on('timeupdate', function(e) {
+        $('#controls audio').on('timeupdate', function(e) {
             $('#seekbar').attr("value", this.currentTime / this.duration);
         })
     },
@@ -43,14 +40,18 @@ module.exports = Backbone.View.extend({
     },
 
     play: function() {
-        this.button.html('Pause')      
-        this.audio.attr('src', this.model.get('currentTrackId')) 
-        this.audio.attr('autoplay', true) 
+        var button = $('#controls button')    
+        ,   audio  = $('#controls audio')
+        button.html('Pause')      
+        audio.attr('src', this.model.get('currentTrackId')) 
+        audio.attr('autoplay', true) 
     },
 
     pause: function() {
-        this.button.html('Play')      
-        this.audio[0].pause() 
+        var button = $('#controls button')    
+        ,   audio  = $('#controls audio')
+        button.html('Play')      
+        audio[0].pause() 
     },
 
     buttonClicked: function() {

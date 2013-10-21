@@ -1,11 +1,13 @@
 var shim     = require('shimsham')
 ,   Backbone = shim.Backbone
 ,   _        = shim._
+,   playlist = require('./playlist')
 
 var Player = Backbone.Model.extend({
     
     initialize: function() {
-        this.set('playing', false)
+        // this.set('playing', false)
+        // this.set('currentTrackId', )    
     },
 
     play: function(id) {
@@ -22,4 +24,4 @@ var Player = Backbone.Model.extend({
 
 _.extend(Player, Backbone.Events)
 
-module.exports = new Player
+module.exports = new Player({playing:false, currentTrackId:playlist.at(0).get('mp3')})
