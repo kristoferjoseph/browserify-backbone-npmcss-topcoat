@@ -7671,325 +7671,7 @@ module.exports = { Backbone:Backbone
                  ,        $:$
                  ,        _:_
                  }
-},{"backbone":1,"lodash/dist/lodash.underscore":3,"zepto-browserify":18}],5:[function(require,module,exports){
-var shim       = require('shimsham')
-,   $          = shim.$
-,   Backbone   = shim.Backbone
-,   Router     = require('./routes')
-
-$(function() {
-    new Router
-    Backbone.history.start({pushState:true})
-})
-
-
-},{"./routes":9,"shimsham":4}],6:[function(require,module,exports){
-var shim     = require('shimsham')
-,   Backbone = shim.Backbone
-,   _        = shim._
-,   playlist = require('./playlist')
-
-var Player = Backbone.Model.extend({
-    
-    initialize: function() {
-        // this.set('playing', false)
-        // this.set('currentTrackId', )    
-    },
-
-    play: function(id) {
-        this.set('playing', true)
-        this.set('currentTrackId', id)    
-        this.trigger('play')
-    },
-
-    pause: function() {
-        this.set('playing', false)
-        this.trigger('pause')       
-    }
-})
-
-_.extend(Player, Backbone.Events)
-
-module.exports = new Player({playing:false, currentTrackId:playlist.at(0).get('mp3')})
-
-},{"./playlist":7,"shimsham":4}],7:[function(require,module,exports){
-var Backbone = require('shimsham').Backbone
-,   Track    = require('./track')
-,   Playlist = Backbone.Collection.extend({model:Track})
-
-
-module.exports = new Playlist([
-    {"artist":"Art Tatum", 
-     "title":"Little Man You've Had a Busy Day", 
-     "mp3":"http://ia700204.us.archive.org/21/items/ArtTatum-LittleManYouveHadABusyDay/ArtTatum-LittleManYouveHadABusyDay.mp3", 
-     "jpg":"",
-     "attribution":"http://archive.org/details/ArtTatum-LittleManYouveHadABusyDay"},
-
-    {"artist":"Louis Armstrong", 
-     "title":"Drop That Sack 1926", 
-     "mp3":"http://archive.org/download/LouisArmstrong-DropThatSack1926/LouisArmstrong-DropThatSack1926.mp3", 
-     "jpg":"",
-     "attribution":"http://archive.org/details/LouisArmstrong-DropThatSack1926"},
-
-    {"artist":"Duke Ellington", 
-     "title":"I'm Gonna Hang Around My Sugar 1925", 
-     "mp3":"http://archive.org/download/1920s-dukeEllington-01-09/DukeEllington-ImGonnaHangAroundMySugar1925.mp3", 
-     "jpg":"",
-     "attribution":"http://archive.org/details/1920s-dukeEllington-01-09"},
-
-    {"artist":"Benny Goodman", 
-     "title":"Sing Sing Sing With a Swing", 
-     "mp3":"http://archive.org/download/BennyGoodman-TheCollectionII/SingSingSingWithASwing.mp3", 
-     "jpg":"",
-     "attribution":"http://archive.org/details/BennyGoodman-TheCollectionII"}
-    ])
-
-},{"./track":8,"shimsham":4}],8:[function(require,module,exports){
-var Backbone = require('shimsham').Backbone
-
-module.exports = Backbone.Model.extend({})
-
-},{"shimsham":4}],9:[function(require,module,exports){
-var shim     = require('shimsham')
-,   $        = shim.$
-,   _        = shim._
-,   Backbone = shim.Backbone
-,   App      = require('./views/app')
-
-
-module.exports = Backbone.Router.extend({
-
-    routes: {
-        '/':'home',
-        "home":"home",      // #help
-        "audio/:id":"audio" // #audio/1
-    },
-
-    initialize: function() {
-        new App
-    },
-
-    home: function() {
-    },
-
-    audio: function(id) {
-
-    }
-})
-
-},{"./views/app":11,"shimsham":4}],10:[function(require,module,exports){
-module.exports=(function() {var t = function anonymous(locals, filters, escape) {
-escape = escape || function (html){
-  return String(html)
-    .replace(/&(?!\w+;)/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-};
-var buf = [];
-with (locals || {}) { (function(){ 
- buf.push('<div id=outer-wrap>\n    <div id=inner-wrap>\n        <div id=title></div>\n        <div id=navmenu></div>\n        <div id=controls></div>\n    </div>\n</div>\n'); })();
-} 
-return buf.join('');
-}; return function(l) { return t(l) }}())
-},{}],11:[function(require,module,exports){
-var shim     = require('shimsham')
-,   Backbone = shim.Backbone
-,   $        = shim.$
-,   _        = shim._
-,   template = require('./app.ejs.html')
-,   TitleBar = require('./title')
-,   NavMenu  = require('./nav')
-,   Controls = require('./controls')
-,   playlist = require('./../models/playlist')
-,   player   = require('./../models/player')
-
-module.exports = Backbone.View.extend({
-    
-    el: 'body',
-    
-    template:template,
-
-    initialize: function() {
-        $(this.el).html(this.template())
-        this.render()
-    },
-
-    render: function() {
-        this.title    = new TitleBar({el:'#title'})
-        this.nav      = new NavMenu({el:'#navmenu', model:player, collection:playlist})
-        this.controls = new Controls({el:'#controls', model:player, collection:playlist})
-        return this
-    }
-})
-
-
-},{"./../models/player":6,"./../models/playlist":7,"./app.ejs.html":10,"./controls":13,"./nav":15,"./title":17,"shimsham":4}],12:[function(require,module,exports){
-module.exports=(function() {var t = function anonymous(locals, filters, escape) {
-escape = escape || function (html){
-  return String(html)
-    .replace(/&(?!\w+;)/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-};
-var buf = [];
-with (locals || {}) { (function(){ 
- buf.push('<audio></audio>  \n<button class=topcoat-button>Play</button>\n<progress id="seekbar" value="0" max="1" style="width:100%"></progress>\n'); })();
-} 
-return buf.join('');
-}; return function(l) { return t(l) }}())
-},{}],13:[function(require,module,exports){
-var shim     = require('shimsham')
-,   Backbone = shim.Backbone
-,   $        = shim.$
-,   _        = shim._
-,   template = require('./controls.ejs.html')
-
-module.exports = Backbone.View.extend({
-    
-    
-    events: {
-        'click': 'buttonClicked'
-    },
-
-    initialize: function() {
-        // draw yourself
-        this.render()
-        
-        var self = this, player = this.model
-        
-        player.on('play', function() {
-            console.log('current track: ' + player.get('currentTrackId'))
-            self.play()
-        })
-        
-        player.on('pause', function() {
-            console.log('pausing track: ' + player.get('currentTrackId'))
-            self.pause()
-        })
-
-        $('#controls audio').on('timeupdate', function(e) {
-            $('#seekbar').attr("value", this.currentTime / this.duration);
-        })
-    },
-
-    template:template,
-
-    render: function() {
-        this.$el.html(this.template())
-        return this
-    },
-
-    play: function() {
-        var button = $('#controls button')    
-        ,   audio  = $('#controls audio')
-        button.html('Pause')      
-        audio.attr('src', this.model.get('currentTrackId')) 
-        audio.attr('autoplay', true) 
-    },
-
-    pause: function() {
-        var button = $('#controls button')    
-        ,   audio  = $('#controls audio')
-        button.html('Play')      
-        audio[0].pause() 
-    },
-
-    buttonClicked: function() {
-        if (this.model.get('playing')) {
-            this.model.pause() 
-        }
-        else {
-            this.model.play(this.model.get('currentTrackId'))
-        }
-    }
-})
-
-
-},{"./controls.ejs.html":12,"shimsham":4}],14:[function(require,module,exports){
-module.exports=(function() {var t = function anonymous(locals, filters, escape) {
-escape = escape || function (html){
-  return String(html)
-    .replace(/&(?!\w+;)/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-};
-var buf = [];
-with (locals || {}) { (function(){ 
- buf.push('<nav class=topcoat-list>\n    <ul class=topcoat-list__container>\n    ');3; collection.forEach(function(track) { ; buf.push('\n    <li id=', escape((4,  track.get('mp3') )), ' class=topcoat-list__item>\n        <span class=mixtape-title>', escape((5,  track.get('title') )), '</span><br>\n        <span class=mixtape-artist>', escape((6,  track.get('artist') )), '</span>\n    </li>\n    ');8; }); ; buf.push('\n    </ul>\n</nav>\n'); })();
-} 
-return buf.join('');
-}; return function(l) { return t(l) }}())
-},{}],15:[function(require,module,exports){
-var shim     = require('shimsham')
-,   Backbone = shim.Backbone
-,   $        = shim.$
-,   _        = shim._
-,   template = require('./nav.ejs.html')
-
-module.exports = Backbone.View.extend({
-    
-    events:{
-        'click':'tap'     
-    },
-
-    initialize: function() {
-        this.render()
-    },
-
-    template:template,
-
-    render: function() {
-        this.$el.html(template({collection:this.collection}))
-        return this
-    },
-
-    tap: function(e) {
-        this.model.play(e.target.id)
-    }
-})
-
-
-},{"./nav.ejs.html":14,"shimsham":4}],16:[function(require,module,exports){
-module.exports=(function() {var t = function anonymous(locals, filters, escape) {
-escape = escape || function (html){
-  return String(html)
-    .replace(/&(?!\w+;)/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-};
-var buf = [];
-with (locals || {}) { (function(){ 
- buf.push('<div class=topcoat-navigation-bar>\n    <div class="topcoat-navigation-bar__item center full">\n        <h1 class=topcoat-navigation-bar__title>', escape((3,  title )), '</h1>\n    </div>\n</div>\n'); })();
-} 
-return buf.join('');
-}; return function(l) { return t(l) }}())
-},{}],17:[function(require,module,exports){
-var shim     = require('shimsham')
-,   Backbone = shim.Backbone
-,   $        = shim.$
-,   _        = shim._
-,   template = require('./title.ejs.html')
-
-module.exports = Backbone.View.extend({
-    
-    initialize: function() {
-        this.render()
-    },
-
-    template:template,
-
-    render: function() {
-        this.$el.html(template({title:'Jazz Mix'}))
-        return this
-    }
-})
-
-
-},{"./title.ejs.html":16,"shimsham":4}],18:[function(require,module,exports){
+},{"backbone":1,"lodash/dist/lodash.underscore":3,"zepto-browserify":5}],5:[function(require,module,exports){
 /* Zepto v1.0 - polyfill zepto detect event ajax form fx - zeptojs.com/license */
 
 ;(function(undefined){
@@ -9581,5 +9263,323 @@ module.exports.Zepto = Zepto;
   testEl = null
 })(Zepto)
 
-},{}]},{},[5])
+},{}],6:[function(require,module,exports){
+var shim       = require('shimsham')
+,   $          = shim.$
+,   Backbone   = shim.Backbone
+,   Router     = require('./routes')
+
+$(function() {
+    new Router
+    Backbone.history.start({pushState:true})
+})
+
+
+},{"./routes":10,"shimsham":4}],7:[function(require,module,exports){
+var shim     = require('shimsham')
+,   Backbone = shim.Backbone
+,   _        = shim._
+,   playlist = require('./playlist')
+
+var Player = Backbone.Model.extend({
+    
+    initialize: function() {
+        // this.set('playing', false)
+        // this.set('currentTrackId', )    
+    },
+
+    play: function(id) {
+        this.set('playing', true)
+        this.set('currentTrackId', id)    
+        this.trigger('play')
+    },
+
+    pause: function() {
+        this.set('playing', false)
+        this.trigger('pause')       
+    }
+})
+
+_.extend(Player, Backbone.Events)
+
+module.exports = new Player({playing:false, currentTrackId:playlist.at(0).get('mp3')})
+
+},{"./playlist":8,"shimsham":4}],8:[function(require,module,exports){
+var Backbone = require('shimsham').Backbone
+,   Track    = require('./track')
+,   Playlist = Backbone.Collection.extend({model:Track})
+
+
+module.exports = new Playlist([
+    {"artist":"Art Tatum", 
+     "title":"Little Man You've Had a Busy Day", 
+     "mp3":"http://ia700204.us.archive.org/21/items/ArtTatum-LittleManYouveHadABusyDay/ArtTatum-LittleManYouveHadABusyDay.mp3", 
+     "jpg":"",
+     "attribution":"http://archive.org/details/ArtTatum-LittleManYouveHadABusyDay"},
+
+    {"artist":"Louis Armstrong", 
+     "title":"Drop That Sack 1926", 
+     "mp3":"http://archive.org/download/LouisArmstrong-DropThatSack1926/LouisArmstrong-DropThatSack1926.mp3", 
+     "jpg":"",
+     "attribution":"http://archive.org/details/LouisArmstrong-DropThatSack1926"},
+
+    {"artist":"Duke Ellington", 
+     "title":"I'm Gonna Hang Around My Sugar 1925", 
+     "mp3":"http://archive.org/download/1920s-dukeEllington-01-09/DukeEllington-ImGonnaHangAroundMySugar1925.mp3", 
+     "jpg":"",
+     "attribution":"http://archive.org/details/1920s-dukeEllington-01-09"},
+
+    {"artist":"Benny Goodman", 
+     "title":"Sing Sing Sing With a Swing", 
+     "mp3":"http://archive.org/download/BennyGoodman-TheCollectionII/SingSingSingWithASwing.mp3", 
+     "jpg":"",
+     "attribution":"http://archive.org/details/BennyGoodman-TheCollectionII"}
+    ])
+
+},{"./track":9,"shimsham":4}],9:[function(require,module,exports){
+var Backbone = require('shimsham').Backbone
+
+module.exports = Backbone.Model.extend({})
+
+},{"shimsham":4}],10:[function(require,module,exports){
+var shim     = require('shimsham')
+,   $        = shim.$
+,   _        = shim._
+,   Backbone = shim.Backbone
+,   App      = require('./views/app')
+
+
+module.exports = Backbone.Router.extend({
+
+    routes: {
+        '/':'home',
+        "home":"home",      // #help
+        "audio/:id":"audio" // #audio/1
+    },
+
+    initialize: function() {
+        new App
+    },
+
+    home: function() {
+    },
+
+    audio: function(id) {
+
+    }
+})
+
+},{"./views/app":12,"shimsham":4}],11:[function(require,module,exports){
+module.exports=(function() {var t = function anonymous(locals, filters, escape) {
+escape = escape || function (html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+};
+var buf = [];
+with (locals || {}) { (function(){ 
+ buf.push('<div id=outer-wrap>\n    <div id=inner-wrap>\n        <div id=title></div>\n        <div id=navmenu></div>\n        <div id=controls></div>\n    </div>\n</div>\n'); })();
+} 
+return buf.join('');
+}; return function(l) { return t(l) }}())
+},{}],12:[function(require,module,exports){
+var shim     = require('shimsham')
+,   Backbone = shim.Backbone
+,   $        = shim.$
+,   _        = shim._
+,   template = require('./app.ejs.html')
+,   TitleBar = require('./title')
+,   NavMenu  = require('./nav')
+,   Controls = require('./controls')
+,   playlist = require('./../models/playlist')
+,   player   = require('./../models/player')
+
+module.exports = Backbone.View.extend({
+    
+    el: 'body',
+    
+    template:template,
+
+    initialize: function() {
+        $(this.el).html(this.template())
+        this.render()
+    },
+
+    render: function() {
+        this.title    = new TitleBar({el:'#title'})
+        this.nav      = new NavMenu({el:'#navmenu', model:player, collection:playlist})
+        this.controls = new Controls({el:'#controls', model:player, collection:playlist})
+        return this
+    }
+})
+
+
+},{"./../models/player":7,"./../models/playlist":8,"./app.ejs.html":11,"./controls":14,"./nav":16,"./title":18,"shimsham":4}],13:[function(require,module,exports){
+module.exports=(function() {var t = function anonymous(locals, filters, escape) {
+escape = escape || function (html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+};
+var buf = [];
+with (locals || {}) { (function(){ 
+ buf.push('<audio></audio>  \n<button class=topcoat-button>Play</button>\n<progress id="seekbar" value="0" max="1" style="width:100%"></progress>\n'); })();
+} 
+return buf.join('');
+}; return function(l) { return t(l) }}())
+},{}],14:[function(require,module,exports){
+var shim     = require('shimsham')
+,   Backbone = shim.Backbone
+,   $        = shim.$
+,   _        = shim._
+,   template = require('./controls.ejs.html')
+
+module.exports = Backbone.View.extend({
+    
+    
+    events: {
+        'click': 'buttonClicked'
+    },
+
+    initialize: function() {
+        // draw yourself
+        this.render()
+        
+        var self = this, player = this.model
+        
+        player.on('play', function() {
+            console.log('current track: ' + player.get('currentTrackId'))
+            self.play()
+        })
+        
+        player.on('pause', function() {
+            console.log('pausing track: ' + player.get('currentTrackId'))
+            self.pause()
+        })
+
+        $('#controls audio').on('timeupdate', function(e) {
+            $('#seekbar').attr("value", this.currentTime / this.duration);
+        })
+    },
+
+    template:template,
+
+    render: function() {
+        this.$el.html(this.template())
+        return this
+    },
+
+    play: function() {
+        var button = $('#controls button')    
+        ,   audio  = $('#controls audio')
+        button.html('Pause')      
+        audio.attr('src', this.model.get('currentTrackId')) 
+        audio.attr('autoplay', true) 
+    },
+
+    pause: function() {
+        var button = $('#controls button')    
+        ,   audio  = $('#controls audio')
+        button.html('Play')      
+        audio[0].pause() 
+    },
+
+    buttonClicked: function() {
+        if (this.model.get('playing')) {
+            this.model.pause() 
+        }
+        else {
+            this.model.play(this.model.get('currentTrackId'))
+        }
+    }
+})
+
+
+},{"./controls.ejs.html":13,"shimsham":4}],15:[function(require,module,exports){
+module.exports=(function() {var t = function anonymous(locals, filters, escape) {
+escape = escape || function (html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+};
+var buf = [];
+with (locals || {}) { (function(){ 
+ buf.push('<nav class=topcoat-list>\n    <ul class=topcoat-list__container>\n    ');3; collection.forEach(function(track) { ; buf.push('\n    <li id=', escape((4,  track.get('mp3') )), ' class=topcoat-list__item>\n        <span class=mixtape-title>', escape((5,  track.get('title') )), '</span><br>\n        <span class=mixtape-artist>', escape((6,  track.get('artist') )), '</span>\n    </li>\n    ');8; }); ; buf.push('\n    </ul>\n</nav>\n'); })();
+} 
+return buf.join('');
+}; return function(l) { return t(l) }}())
+},{}],16:[function(require,module,exports){
+var shim     = require('shimsham')
+,   Backbone = shim.Backbone
+,   $        = shim.$
+,   _        = shim._
+,   template = require('./nav.ejs.html')
+
+module.exports = Backbone.View.extend({
+    
+    events:{
+        'click':'tap'     
+    },
+
+    initialize: function() {
+        this.render()
+    },
+
+    template:template,
+
+    render: function() {
+        this.$el.html(template({collection:this.collection}))
+        return this
+    },
+
+    tap: function(e) {
+        this.model.play(e.target.id)
+    }
+})
+
+
+},{"./nav.ejs.html":15,"shimsham":4}],17:[function(require,module,exports){
+module.exports=(function() {var t = function anonymous(locals, filters, escape) {
+escape = escape || function (html){
+  return String(html)
+    .replace(/&(?!\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+};
+var buf = [];
+with (locals || {}) { (function(){ 
+ buf.push('<div class=topcoat-navigation-bar>\n    <div class="topcoat-navigation-bar__item center full">\n        <h1 class=topcoat-navigation-bar__title>', escape((3,  title )), '</h1>\n    </div>\n</div>\n'); })();
+} 
+return buf.join('');
+}; return function(l) { return t(l) }}())
+},{}],18:[function(require,module,exports){
+var shim     = require('shimsham')
+,   Backbone = shim.Backbone
+,   $        = shim.$
+,   _        = shim._
+,   template = require('./title.ejs.html')
+
+module.exports = Backbone.View.extend({
+    
+    initialize: function() {
+        this.render()
+    },
+
+    template:template,
+
+    render: function() {
+        this.$el.html(template({title:'Jazz Mix'}))
+        return this
+    }
+})
+
+
+},{"./title.ejs.html":17,"shimsham":4}]},{},[6])
 ;
